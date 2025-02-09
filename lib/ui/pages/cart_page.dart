@@ -43,6 +43,7 @@ class CartPage extends StatelessWidget {
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
+                            // Bouton de suppression du produit
                             IconButton(
                               icon: Icon(Icons.delete, color: Colors.red),
                               onPressed: () {
@@ -54,6 +55,8 @@ class CartPage extends StatelessWidget {
                                 );
                               },
                             ),
+
+                            // Boutons pour gérer la quantité
                             IconButton(
                               icon: Icon(Icons.remove),
                               onPressed: () {
@@ -83,9 +86,8 @@ class CartPage extends StatelessWidget {
                       Text(
                           "Total: ${cartProvider.totalPrice.toStringAsFixed(2)}€"),
                       ElevatedButton(
-                        onPressed: () {
-                          // On ajoutera ici l'envoi de la requête d'achat plus tard
-                        },
+                        onPressed: () =>
+                            cartProvider.sendPurchaseRequest(context),
                         child: Text("Procéder au paiement"),
                       ),
                     ],
