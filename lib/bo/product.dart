@@ -1,7 +1,7 @@
 final listProducts = [
   Product(
     id: 1,
-    name: "Bilboquet",
+    title: "Bilboquet",
     description:
         "Jeu d'adresse et d'agilité, le bilboquet est un jeu traditionnel où une boule en bois, suspendue par une cordelette, doit être rattrapée par un pic en bois.",
     category: "Informatique",
@@ -10,7 +10,7 @@ final listProducts = [
   ),
   Product(
     id: 2,
-    name: "Boomerang",
+    title: "Boomerang",
     description: "Jeu pour célibataire australien",
     category: "Chaussures",
     image: "assets/images/boomerang.jpg",
@@ -18,7 +18,7 @@ final listProducts = [
   ),
   Product(
     id: 3,
-    name: "Diabolo",
+    title: "Diabolo",
     description: "Jeu pour saltimbanque",
     category: "Téléphonie",
     image: "assets/images/diabolo.jpg",
@@ -26,7 +26,7 @@ final listProducts = [
   ),
   Product(
     id: 4,
-    name: "Table à manger en chêne",
+    title: "Table à manger en chêne",
     description: "Table en bois massif pour 6 personnes, style contemporain",
     category: "Mobilier",
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
@@ -34,7 +34,7 @@ final listProducts = [
   ),
   Product(
     id: 5,
-    name: "Machine à café Delonghi",
+    title: "Machine à café Delonghi",
     description: "Machine à café automatique avec broyeur à grains intégré",
     category: "Électroménager",
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
@@ -42,7 +42,7 @@ final listProducts = [
   ),
   Product(
     id: 6,
-    name: "PlayStation 5",
+    title: "PlayStation 5",
     description: "Console de jeu nouvelle génération avec manette DualSense",
     category: "Gaming",
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
@@ -50,7 +50,7 @@ final listProducts = [
   ),
   Product(
     id: 7,
-    name: "Canapé d'angle convertible",
+    title: "Canapé d'angle convertible",
     description:
         "Canapé en tissu gris avec méridienne gauche et coffre de rangement",
     category: "Mobilier",
@@ -59,7 +59,7 @@ final listProducts = [
   ),
   Product(
     id: 8,
-    name: "Robot aspirateur Roomba",
+    title: "Robot aspirateur Roomba",
     description:
         "Robot aspirateur intelligent avec cartographie et contrôle via smartphone",
     category: "Électroménager",
@@ -68,7 +68,7 @@ final listProducts = [
   ),
   Product(
     id: 9,
-    name: "Apple Watch Series 9",
+    title: "Apple Watch Series 9",
     description: "Montre connectée avec GPS et cellular, boîtier 45mm",
     category: "Accessoires",
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
@@ -76,7 +76,7 @@ final listProducts = [
   ),
   Product(
     id: 10,
-    name: "Télévision Samsung QLED 65\"",
+    title: "Télévision Samsung QLED 65\"",
     description: "TV 4K UHD Smart TV avec processeur Neural Quantum",
     category: "TV & Home Cinéma",
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
@@ -84,7 +84,7 @@ final listProducts = [
   ),
   Product(
     id: 11,
-    name: "Vélo électrique Specialized",
+    title: "Vélo électrique Specialized",
     description: "Vélo urbain électrique avec autonomie de 80km",
     category: "Sport",
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
@@ -92,7 +92,7 @@ final listProducts = [
   ),
   Product(
     id: 12,
-    name: "Appareil photo Sony A7 IV",
+    title: "Appareil photo Sony A7 IV",
     description:
         "Appareil photo hybride plein format 33MP avec objectif 28-70mm",
     category: "Photo",
@@ -102,7 +102,7 @@ final listProducts = [
 ];
 
 class Product {
-  String name;
+  String title;
   String description;
   int id;
   String category;
@@ -110,7 +110,7 @@ class Product {
   num price;
 
   Product({
-    required this.name,
+    required this.title,
     required this.description,
     required this.id,
     required this.category,
@@ -119,4 +119,26 @@ class Product {
   });
 
   String getPrice() => "${price.toStringAsFixed(2)}€";
+
+  Map<String, dynamic> toMap() {
+    return {
+      'title': this.title,
+      'description': this.description,
+      'id': this.id,
+      'category': this.category,
+      'image': this.image,
+      'price': this.price,
+    };
+  }
+
+  factory Product.fromMap(Map<String, dynamic> map) {
+    return Product(
+      title: map['title'] as String,
+      description: map['description'] as String,
+      id: map['id'] as int,
+      category: map['category'] as String,
+      image: map['image'] as String,
+      price: map['price'] as num,
+    );
+  }
 }
